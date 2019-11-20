@@ -1,8 +1,8 @@
-FROM postgres:11
+FROM postgres:12
 MAINTAINER Roelof Rietbroek <roelof@wobbly.earth>
 
-ENV POSTGIS_MAJOR 2.5
-ENV POSTGIS_VERSION 2.5.1+dfsg-1
+ENV POSTGIS_MAJOR 3
+ENV POSTGIS_VERSION 3.0.0+dfsg-2~exp1.pgdg100+1
 
 RUN apt-get update \
       && apt-get install -y --no-install-recommends \
