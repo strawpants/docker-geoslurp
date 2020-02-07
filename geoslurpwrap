@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+geoslurper.py --user ${GEOSLURP_USER} --password ${GEOSLURP_UPASSWD} --local-settings /etc/geoslurp/.geoslurp_lastused.yaml $@
