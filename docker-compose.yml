@@ -1,0 +1,24 @@
+version: '3'
+services:
+  postgis:
+    build: . 
+    container_name: geoslurp_12_3
+    restart: unless-stopped
+    volumes:
+      - "${PG_DATA}:/var/lib/postgresql/data"
+      - "${GEOSLURP_DATAROOT}:/geoslurp_data"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - GEOSLURP_USER=${GEOSLURP_USER}
+      - GEOSLURP_UPASSWD=${GEOSLURP_UPASSWD}
+      - GEOSLURP_ROUSER=${GEOSLURP_ROUSER}
+      - GEOSLURP_ROUPASSWD=${GEOSLURP_ROUPASSWD}
+      - GEOSLURP_DATAROOT=${GEOSLURP_DATAROOT}
+    user: "${GEOSLURP_UID}:${GEOSLURP_UID}" 
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+
