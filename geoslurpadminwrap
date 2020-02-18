@@ -1,4 +1,9 @@
 #!/bin/bash
 
 
-geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} --local-settings /etc/geoslurp/.geoslurp_lastused.yaml $@
+if [[ -z ${GEOSLURP_SETTINGS+x}]];
+then
+    geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} $@
+else
+    geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} --local-settings ${GEOSLURP_SETTINGS} $@
+fi
