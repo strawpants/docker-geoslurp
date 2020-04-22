@@ -9,6 +9,7 @@ RUN apt-get update \
       && apt-get install -y --no-install-recommends \
            postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
            postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts \
+           postgresql-plpython3-$PG_MAJOR \
            postgis \
            git python3-pip python3-wheel python3-setuptools python3-crypto python3-netcdf4 \
            python3-sqlalchemy python3-psycopg2 python3-gdal python3-keyring \
