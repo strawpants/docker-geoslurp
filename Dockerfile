@@ -34,8 +34,8 @@ RUN mkdir /geoslurp_data
 RUN chown postgres:postgres /geoslurp_data
 
 #also install geoslurp from the git repository
-RUN pip3 install --process-dependency-links git+https://github.com/strawpants/geoslurp.git@c39d8b3f54df8f1215acfc4aeb0a0e12bbfedffc
+#RUN pip3 install --process-dependency-links git+https://github.com/strawpants/geoslurp.git@1022408e7151eaec776d800f97c4bf451c8267df
 
 
-#RUN pip3 install --process-dependency-links geoslurp==1.0.0
+RUN pip3 install --process-dependency-links geoslurp==1.1.0
 
