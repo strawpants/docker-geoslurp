@@ -24,6 +24,7 @@ RUN chmod 755 /usr/local/bin/geoslurpwrap
 COPY ./geoslurpadminwrap /usr/local/bin/
 RUN chmod 755 /usr/local/bin/geoslurpadminwrap
 
+COPY ./geoslurpentrypoint.sh /
 COPY ./init-postgis.sh /docker-entrypoint-initdb.d/init-postgis.sh
 COPY ./setupgeoslurp.sh /docker-entrypoint-initdb.d/setupgeoslurp.sh
 COPY ./update-postgis.sh /usr/local/bin
@@ -31,11 +32,15 @@ COPY ./update-postgis.sh /usr/local/bin
 RUN pip3 install --upgrade numpy
 
 RUN mkdir /geoslurp_data
-RUN chown postgres:postgres /geoslurp_data
+#RUN chown postgres:postgres /geoslurp_data
+RUN mkdir /geoslurp_cache
 
-#also install geoslurp from the git repository
-#RUN pip3 install --process-dependency-links git+https://github.com/strawpants/geoslurp.git@1022408e7151eaec776d800f97c4bf451c8267df
+#also install geoslurp from the git repository (for development)
+RUN pip3 install --process-dependency-links git+https://github.com/strawpants/geoslurp.git
+
+#install geoslurp from pip (for production)
+#RUN pip3 install --process-dependency-links geoslurp==1.1.0
 
 
-RUN pip3 install --process-dependency-links geoslurp==1.1.0
-
+ENTRYPOINT /geoslurpentrypoint.sh
+CMD postgres

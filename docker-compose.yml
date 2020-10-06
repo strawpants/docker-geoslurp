@@ -1,23 +1,26 @@
 version: '3'
 services:
-  postgis:
-    build: . 
-    container_name: geoslurpv1_1_0
+  geoslurpdb:
+    #build: . 
+    image: strawpants/geoslurp:latest 
+    hostname: geoslurpdb
+    container_name: geoslurpdb
     restart: unless-stopped
-    volumes:
-      - "${PG_DATA}:/var/lib/postgresql/data"
-      - "${GEOSLURP_DATAROOT}:/geoslurp_data"
+    #volumes:
+      #- "${PG_DATA}:/var/lib/postgresql/data"
+      #- "${GEOSLURP_DATAROOT}:/geoslurp_data"
+      #- "${GEOSLURP_CACHE}:/geoslurp_cache"
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=geoslurp
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - GEOSLURP_USER=${GEOSLURP_USER}
       - GEOSLURP_UPASSWD=${GEOSLURP_UPASSWD}
+      - GEOSLURP_UID=${GEOSLURP_UID}
       - GEOSLURP_ROUSER=${GEOSLURP_ROUSER}
       - GEOSLURP_ROUPASSWD=${GEOSLURP_ROUPASSWD}
       - GEOSLURP_DATAROOT=${GEOSLURP_DATAROOT}
       - GEOSLURP_SETTINGS=/etc/geoslurp/.geoslurp_lastused.yaml
-    user: "${GEOSLURP_UID}:${GEOSLURP_UID}" 
     ports:
       - "5432:5432"
     expose:

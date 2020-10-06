@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-if [[ -z ${GEOSLURP_SETTINGS+x}]];
+if [[ -z ${GEOSLURP_SETTINGS+x} ]];
 then
-    geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} $@
+    runuser -u ${GEOSLURP_USER} -- geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} $@
 else
-    geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} --local-settings ${GEOSLURP_SETTINGS} $@
+    runuser -u ${GEOSLURP_USER} -- geoslurper.py --user ${POSTGRES_USER} --password ${POSTGRES_PASSWORD} --local-settings ${GEOSLURP_SETTINGS} $@
 fi
